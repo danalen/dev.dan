@@ -1,0 +1,18 @@
+<IfModule mod_headers.c>
+    # 1. Content-Security-Policy (CSP)
+    # Configurado para permitir os CDNs utilizados no seu projeto (Tailwind, FontAwesome, Swiper, Google Fonts) e imagens
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com data:; img-src 'self' data: https:;"
+
+    # 2. Proteção contra Clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+
+    # 3. Prevenção de MIME-sniffing
+    Header set X-Content-Type-Options "nosniff"
+
+    # 4. Política de Referrer
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # 5. Política CORS Segura
+    # Remove qualquer permissão coringa (Access-Control-Allow-Origin: *)
+    Header unset Access-Control-Allow-Origin
+</IfModule>
